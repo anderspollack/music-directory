@@ -8,11 +8,15 @@
 
 CREATE TABLE `Users` (
     `UserID` string  NOT NULL ,
-    `DisplayName` string  NOT NULL ,
+    `Username` varchar(15)  NOT NULL ,
+    `DisplayName` varchar(50)  NOT NULL ,
     `Bio` varchar(200)  NOT NULL ,
     `ImageURL` string  NOT NULL ,
     PRIMARY KEY (
         `UserID`
+    ),
+    CONSTRAINT `uc_Users_Username` UNIQUE (
+        `Username`
     )
 );
 
@@ -52,6 +56,15 @@ CREATE TABLE `RecentArtists` (
     )
 );
 
+CREATE TABLE `RecentUsers` (
+    `RecentID` int AUTO_INCREMENT NOT NULL ,
+    `UserID` string  NOT NULL ,
+    `RecentUserID` string  NOT NULL ,
+    PRIMARY KEY (
+        `RecentID`
+    )
+);
+
 ALTER TABLE `Artists` ADD CONSTRAINT `fk_Artists_UserID` FOREIGN KEY(`UserID`)
 REFERENCES `Users` (`UserID`);
 
@@ -59,5 +72,11 @@ ALTER TABLE `RecentSearches` ADD CONSTRAINT `fk_RecentSearches_UserID` FOREIGN K
 REFERENCES `Users` (`UserID`);
 
 ALTER TABLE `RecentArtists` ADD CONSTRAINT `fk_RecentArtists_UserID` FOREIGN KEY(`UserID`)
+REFERENCES `Users` (`UserID`);
+
+ALTER TABLE `RecentUsers` ADD CONSTRAINT `fk_RecentUsers_UserID` FOREIGN KEY(`UserID`)
+REFERENCES `Users` (`UserID`);
+
+ALTER TABLE `RecentUsers` ADD CONSTRAINT `fk_RecentUsers_RecentUserID` FOREIGN KEY(`RecentUserID`)
 REFERENCES `Users` (`UserID`);
 
