@@ -6,6 +6,7 @@ import {
   } from 'react-router-dom';
 
 import LandingPage from './pages/LandingPage';
+import AuthPage from './pages/AuthPage';
 
 const App: React.FC = () => {
     return (
@@ -15,10 +16,11 @@ const App: React.FC = () => {
                     <Route exact path='/'>
                         <LandingPage />
                     </Route>
-                    <Route path='/test'>
+                    <Route path='/register'>
                         <div>test</div>
                     </Route>
                 </Switch>
+                <AuthPage />
             </div>
         </Router>
     );

@@ -3,11 +3,11 @@ import { useFormInput, useWindowResolution } from '../hooks'
 
 const SearchBar: React.FC = () => {
     const searchTerm = useFormInput('');
+    const searchTerm = useFormInput('');
     const { width, height } = useWindowResolution();
 
     useEffect(() => {
-        // can hit rovi auto suggest api here
-        console.log('using effect in searchBar')
+        
     })
 
     const handleSubmit = (e: FormEvent): void => {
