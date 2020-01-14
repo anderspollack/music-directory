@@ -10,14 +10,16 @@ import LandingPage from './pages/LandingPage';
 const App: React.FC = () => {
     return (
         <Router>
-            <Switch>
-                <Route exact path='/'>
-                    <LandingPage />
-                </Route>
-                <Route path='/test'>
-                    <div>test</div>
-                </Route>
-            </Switch>
+            <div className="border-box w-100 h-100 helvetica light-green bg-navy">
+                <Switch>
+                    <Route exact path='/'>
+                        <LandingPage />
+                    </Route>
+                    <Route path='/test'>
+                        <div>test</div>
+                    </Route>
+                </Switch>
+            </div>
         </Router>
     );
 }
