@@ -15,7 +15,6 @@ router.delete("/logout", (req, res) => {
 });
 router.post("/register", jsonParser, (req, res) => {
     const { username, password } = req.body;
-    res.send(`username: ${username} password: ${password}`);
 });
 router.delete("/delete", (req, res) => {
     res.send("delete");
