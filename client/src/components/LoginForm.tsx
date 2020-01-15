@@ -8,7 +8,7 @@ const LoginForm: React.FC = () => {
     const handleSubmit = (e: FormEvent): void => {
         e.preventDefault();
         alert(`logging in ${ emailField.value }`);
-    }
+    };
 
     return (
         <form
