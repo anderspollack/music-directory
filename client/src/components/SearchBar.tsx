@@ -3,7 +3,6 @@ import { useFormInput, useWindowResolution } from '../hooks'
 
 const SearchBar: React.FC = () => {
     const searchTerm = useFormInput('');
-    const searchTerm = useFormInput('');
     const { width, height } = useWindowResolution();
 
     useEffect(() => {
