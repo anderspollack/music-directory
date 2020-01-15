@@ -14,7 +14,8 @@ router.delete("/logout", (req, res) => {
     res.send("logout");
 });
 router.post("/register", jsonParser, (req, res) => {
-    const { username, password } = req.body;
+    const { idToken } = req.body;
+    res.send(idToken);
 });
 router.delete("/delete", (req, res) => {
     res.send("delete");

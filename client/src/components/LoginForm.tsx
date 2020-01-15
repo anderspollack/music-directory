@@ -1,14 +1,25 @@
 import React, { FormEvent } from 'react';
 import { useFormInput } from '../hooks';
+import firebase from 'firebase/app';
+import "firebase/auth";
 
 const LoginForm: React.FC = () => {
     const emailField = useFormInput('');
     const passwordField = useFormInput('');
 
-    const handleSubmit = (e: FormEvent): void => {
-        e.preventDefault();
-        alert(`logging in ${ emailField.value }`);
-    };
+    const handleSubmit = async (e: FormEvent): Promise<void> => {
+        try {
+            e.preventDefault();
+            const firebaseResponse = await firebase.auth()
+                .signInWithEmailAndPassword(
+                    emailField.value, passwordField.value
+                );
+
+            console.log('response', firebaseResponse);
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     return (
         <form
@@ -24,7 +35,7 @@ const LoginForm: React.FC = () => {
             <div className="flex">
                 <label>Password</label>
                 <input
-                    type="text"
+                    type="password"
                     { ...passwordField }
                 />
             </div>

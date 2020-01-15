@@ -1,15 +1,44 @@
-import React, { FormEvent } from 'react';
+import React, { FormEvent, useEffect } from 'react';
+import { useContextState } from '../context';
 import { useFormInput } from '../hooks';
+
+import axios from 'axios';
+import firebase from 'firebase/app';
+import "firebase/auth";
 
 const RegisterForm: React.FC = () => {
     const usernameField = useFormInput('');
     const emailField = useFormInput('');
     const passwordField = useFormInput('');
     const passwordConfirmField = useFormInput('');
+    const [{ authState }, dispatch] = useContextState();
 
-    const handleSubmit = (e: FormEvent): void => {
-        e.preventDefault();
-        alert(`Registering ${ usernameField.value }`);
+    const handleSubmit = async (e: FormEvent): Promise<void> => {
+        try {
+            e.preventDefault();
+            const firebaseResponse = await firebase.auth()
+                .createUserWithEmailAndPassword(
+                    emailField.value, passwordField.value
+                );
+            if (firebaseResponse && firebaseResponse.user) {
+                dispatch({
+                    type: 'setAuthState',
+                    authState: { uid: firebaseResponse.user.uid }
+                });
+
+                const idToken = await firebase.auth()
+                    .currentUser?.getIdToken();
+                
+                const res = await axios
+                    .post('http://localhost:3001/api/auth/register', {
+                        idToken
+                    })
+
+                console.log(res);
+            }
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     return (

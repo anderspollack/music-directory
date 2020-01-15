@@ -2,6 +2,7 @@ import React from 'react';
 
 import LoginForm from '../components/LoginForm';
 import RegisterForm from '../components/RegisterForm';
+import LogoutButton from '../components/LogoutButton';
 
 // add firebase client sdk
 // add form inputs
@@ -14,6 +15,7 @@ const AuthPage: React.FC = () => {
             AuthPage
             <LoginForm />
             <RegisterForm />
+            <LogoutButton />
         </div>
     );
 };
