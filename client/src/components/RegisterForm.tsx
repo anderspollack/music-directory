@@ -28,11 +28,18 @@ const RegisterForm: React.FC = () => {
 
                 const idToken = await firebase.auth()
                     .currentUser?.getIdToken();
+
+                console.log("idToken: ", idToken);
                 
                 const res = await axios
-                    .post('http://localhost:3001/api/auth/register', {
-                        idToken
-                    })
+                    .post('http://localhost:3001/api/auth/register', 
+                        {},
+                        {
+                            headers: {
+                                authorization: idToken,
+                            },
+                        }
+                    );
 
                 console.log(res);
             }

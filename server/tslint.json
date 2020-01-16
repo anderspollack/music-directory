@@ -4,10 +4,15 @@
         "tslint:recommended"
     ],
     "jsRules": {
+        "trailing-comma": [ false ],
+        "indent": [false, "spaces", 4],
+        "object-literal-sort-keys": false
     },
     "rules": {
         "trailing-comma": [ false ],
-        "indent": [false, "spaces", 4]
+        "indent": [false, "spaces", 4],
+        "object-literal-sort-keys": false,
+        "no-console": false
     },
     "rulesDirectory": []
 }

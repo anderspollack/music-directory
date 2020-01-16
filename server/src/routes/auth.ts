@@ -1,9 +1,6 @@
 import express from "express";
 const router = express.Router();
 
-import bodyParser from "body-parser";
-const jsonParser = bodyParser.json();
-
 router.post("/login", (req, res) => {
     res.send("login");
 });
@@ -12,9 +9,9 @@ router.delete("/logout", (req, res) => {
     res.send("logout");
 });
 
-router.post("/register", jsonParser, (req, res) => {
-    const { idToken } = req.body;
-    res.send(idToken);
+router.post("/register", (req, res) => {
+    const { uid } = req.body;
+    res.send(uid);
 });
 
 router.delete("/delete", (req, res) => {
