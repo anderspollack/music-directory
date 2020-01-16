@@ -1,5 +1,5 @@
 import * as admin from "firebase-admin";
-import * as serviceAccount from "./firebase-application-credentials.json";
+import * as serviceAccount from "./firebase-credentials.json";
 
 const params = {
     type: serviceAccount.type,
