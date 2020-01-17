@@ -6,30 +6,33 @@ CREATE TABLE IF NOT EXISTS users (
     display_name VARCHAR(50) NOT NULL,
     username VARCHAR(15) NOT NULL,
     bio VARCHAR(1000) NOT NULL,
-    image_url VARCHAR(200) NOT NULL
+    image_url VARCHAR(200) NULL
 );
 
 CREATE TABLE IF NOT EXISTS artists (
-    rovi_id VARCHAR(12) NOT NULL PRIMARY KEY,
+    artist_id INT NOT NULL auto_increment PRIMARY KEY,
+    rovi_id VARCHAR(12) NOT NULL,
     user_id VARCHAR(36) NOT NULL,
-    notes VARCHAR(1000),
+    notes VARCHAR(1000) NULL,
     CONSTRAINT `fk_user_id_artists`
         FOREIGN KEY (user_id) REFERENCES users (user_id)
         ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS albums (
-    rovi_id VARCHAR(12) NOT NULL PRIMARY KEY,
+    album_id INT NOT NULL auto_increment PRIMARY KEY,
+    rovi_id VARCHAR(12) NOT NULL,
     user_id VARCHAR(36) NOT NULL,
-    notes VARCHAR(1000),
+    notes VARCHAR(1000) NULL,
     CONSTRAINT `fk_user_id_albums`
         FOREIGN KEY (user_id) REFERENCES users (user_id)
         ON DELETE CASCADE
 );
     
 CREATE TABLE IF NOT EXISTS recents (
-    id VARCHAR(36) NOT NULL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    image_url VARCHAR(200) NOT NULL,
-    category INT NOT NULL
+    recent_id INT NOT NULL auto_increment PRIMARY KEY,
+    rovi_or_user_id VARCHAR(36) NULL,
+    text VARCHAR(100) NOT NULL,
+    image_url VARCHAR(200) NULL,
+    category ENUM('user', 'artist', 'album', 'search_term') NOT NULL
 );
