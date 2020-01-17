@@ -6,17 +6,6 @@ const pool = mariadb.createPool({
     connectionLimit: 5
 });
 
-async function connectDB() {
-    let conn;
-    try {
-        conn = await pool.getConnection();
-        await conn.query("CREATE DATABASE IF NOT EXISTS music-directory");
+const db = pool.getConnection();
 
-    } catch (err) {
-        throw err;
-    } finally {
-        if (conn) { conn.release(); } // release to pool
-    }
-}
-
-export default connectDB;
+export default db;

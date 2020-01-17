@@ -6,10 +6,6 @@ import express from "express";
 import verifyToken from "./middleware/verifyToken";
 import router from "./routes";
 
-import connectDB from "./db";
-
-connectDB();
-
 const jsonParser = bodyParser.json();
 
 const app = express();
