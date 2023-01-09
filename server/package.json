@@ -23,7 +23,7 @@
         "cors": "^2.8.5",
         "dotenv": "^8.2.0",
         "express": "^4.17.1",
-        "firebase-admin": "^8.9.1",
+        "firebase-admin": "^11.4.1",
         "mariadb": "^2.1.5",
         "nodemon": "^2.0.2"
     },
